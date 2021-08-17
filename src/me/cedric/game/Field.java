@@ -4,8 +4,8 @@ import java.util.Arrays;
 
 public class Field {
     private final char[][] field;
-    private int verticalSize;
-    private int horizontalSize;
+    private final int verticalSize;
+    private final int horizontalSize;
 
     public Field(int verticalSize, int horizontalSize) {
         this.verticalSize = verticalSize;
@@ -23,10 +23,6 @@ public class Field {
 
     public int getHorizontalSize() {
         return horizontalSize;
-    }
-
-    public char[][] getField() {
-        return field;
     }
 
     public void setChip(int x, int y, ChipState state) {
@@ -51,8 +47,8 @@ public class Field {
     }
 
     public boolean dropPossible(int column) {
-        for (int i = this.getVerticalSize(); i >= 0; i--) {
-            if (this.getFieldPointState(column, i) == ChipState.EMPTY) {
+        for (int i = this.getVerticalSize()-1; i >= 0; i--) {
+            if (this.getFieldPointState(i,column) == ChipState.EMPTY) {
                 return true;
             }
         }
@@ -95,9 +91,9 @@ public class Field {
                 }
             }
             System.out.print("|");
-            System.out.println("");
+            System.out.println();
         }
-        System.out.println("");
+        System.out.println();
 
 
     }

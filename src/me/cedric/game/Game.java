@@ -16,7 +16,7 @@ public class Game {
         this.player2 = player2;
         this.gameField = new Field(height, width);
         Random random = new Random();
-        int x = random.nextInt(1);
+        int x = random.nextInt(2);
         if (x == 0) {
             turn = player1;
         } else {
@@ -34,9 +34,8 @@ public class Game {
         while (this.gameState == GameState.RUNNING) {
             System.out.println("This is the current field:");
             this.gameField.printField();
-                boolean possible = false;
                 //While Loop Until Player has made a valid Turn
-                while (!possible) {
+                while (true) {
                     System.out.println("It is " + turn.getName() + "'s turn: ");
                     int column = turn.doTurn();
                     //Check if column to Drop is valid and drop chip depending on which players turn it is

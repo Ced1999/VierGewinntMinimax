@@ -3,10 +3,9 @@ package me.cedric.game;
 import me.cedric.player.HumanPlayer;
 import me.cedric.player.Player;
 
-import static me.cedric.game.EvaluationUtilities.checkForWinner;
-
 public class Main {
     public static void main(String[] args) {
+
         Field sf = new Field(6,7);
         sf.printField();
         sf.setChip(5,4,ChipState.RED);

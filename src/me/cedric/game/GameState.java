@@ -5,5 +5,5 @@ public enum GameState {
     RUNNING,
     PLAYER1WINNER,
     PLAYER2WINNER,
-    REMIS;
+    REMIS
 }
