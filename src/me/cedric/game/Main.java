@@ -25,7 +25,7 @@ public class Main {
         sf.dropChip(4,ChipState.RED);
         sf.printField();
 
-        Game game = new Game(player1,player2,6,7);
+        Game game = new Game(player1, player2, 6, 7, 0, true);
         game.startGame();
 
         //System.out.println(EvaluationUtilities.checkVertical(player1,sf));

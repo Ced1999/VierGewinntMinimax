@@ -38,17 +38,26 @@ public class Field {
     }
 
     public void dropChip(int column, ChipState toDrop) {
-        for (int i = this.getVerticalSize()-1; i >= 0; i--) {
-            if (this.getFieldPointState( i,column) == ChipState.EMPTY) {
+        for (int i = this.getVerticalSize() - 1; i >= 0; i--) {
+            if (this.getFieldPointState(i, column) == ChipState.EMPTY) {
                 this.setChip(i, column, toDrop);
                 return;
             }
         }
     }
 
+    public boolean anyMoreMovesPossible() {
+        for (int i = 0; i < this.getHorizontalSize(); i++) {
+            if (dropPossible(i)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public boolean dropPossible(int column) {
-        for (int i = this.getVerticalSize()-1; i >= 0; i--) {
-            if (this.getFieldPointState(i,column) == ChipState.EMPTY) {
+        for (int i = this.getVerticalSize() - 1; i >= 0; i--) {
+            if (this.getFieldPointState(i, column) == ChipState.EMPTY) {
                 return true;
             }
         }

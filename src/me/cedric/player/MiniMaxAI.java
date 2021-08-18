@@ -1,12 +1,19 @@
 package me.cedric.player;
 
-public class MiniMaxAI extends Player{
+import me.cedric.game.Field;
+
+public class MiniMaxAI extends Player {
     public MiniMaxAI(String name, char token) {
         super(name, token);
     }
 
     @Override
     public int doTurn() {
+        return 0;
+    }
+
+    @Override
+    public int doTurn(Field field) {
         return 0;
     }
 }

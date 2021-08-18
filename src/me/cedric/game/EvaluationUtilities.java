@@ -33,16 +33,16 @@ public class EvaluationUtilities {
 
     public static boolean checkDiagonals(Player player, Field gameField) {
         // ascendingDiagonalCheck 
-        for (int i = 3; i < gameField.getHorizontalSize(); i++) {
-            for (int j = 0; j < gameField.getVerticalSize() - 3; j++) {
-                if (gameField.getFieldPoint(i, j) == player.getToken() && gameField.getFieldPoint(i - 1, j + 1) == player.getToken() && gameField.getFieldPoint(i - 2, j + 2) == player.getToken() && gameField.getFieldPoint(i - 3, j + 3) == player.getToken())
+        for (int column = 3; column < gameField.getHorizontalSize(); column++) {
+            for (int row = 0; row < gameField.getVerticalSize() - 3; row++) {
+                if (gameField.getFieldPoint(row, column) == player.getToken() && gameField.getFieldPoint(row + 1, column - 1) == player.getToken() && gameField.getFieldPoint(row + 2, column - 2) == player.getToken() && gameField.getFieldPoint(row + 3, column - 3) == player.getToken())
                     return true;
             }
         }
         // descendingDiagonalCheck
-        for (int i = 3; i < gameField.getHorizontalSize(); i++) {
-            for (int j = 3; j < gameField.getVerticalSize(); j++) {
-                if (gameField.getFieldPoint(i, j) == player.getToken() && gameField.getFieldPoint(i - 1, j - 1) == player.getToken() && gameField.getFieldPoint(i - 2, j - 2) == player.getToken() && gameField.getFieldPoint(i - 3, j - 3) == player.getToken())
+        for (int column = 3; column < gameField.getHorizontalSize(); column++) {
+            for (int row = 3; row < gameField.getVerticalSize(); row++) {
+                if (gameField.getFieldPoint(row, column) == player.getToken() && gameField.getFieldPoint(row - 1, column - 1) == player.getToken() && gameField.getFieldPoint(row - 2, column - 2) == player.getToken() && gameField.getFieldPoint(row - 3, column - 3) == player.getToken())
                     return true;
             }
         }

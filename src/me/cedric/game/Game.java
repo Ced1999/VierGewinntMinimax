@@ -1,8 +1,11 @@
 package me.cedric.game;
 
+import me.cedric.player.HumanPlayer;
 import me.cedric.player.Player;
 
 import java.util.Random;
+
+import static java.lang.Thread.sleep;
 
 public class Game {
     private final Player player1;
@@ -10,10 +13,14 @@ public class Game {
     private final Field gameField;
     private GameState gameState;
     private Player turn;
+    private final int waitingTime;
+    private final boolean showOutput;
 
-    public Game(Player player1, Player player2, int height, int width) {
+    public Game(Player player1, Player player2, int height, int width, int waitingTime, boolean showOutput) {
         this.player1 = player1;
         this.player2 = player2;
+        this.waitingTime = waitingTime;
+        this.showOutput = showOutput;
         this.gameField = new Field(height, width);
         Random random = new Random();
         int x = random.nextInt(2);
@@ -32,42 +39,59 @@ public class Game {
 
     public void gameLogic() {
         while (this.gameState == GameState.RUNNING) {
-            System.out.println("This is the current field:");
-            this.gameField.printField();
-                //While Loop Until Player has made a valid Turn
-                while (true) {
+            if (showOutput) {
+                System.out.println("This is the current field:");
+                this.gameField.printField();
+            }
+            //While Loop Until Player has made a valid Turn
+            while (true) {
+                try {
+                    sleep(this.waitingTime);
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
+                if (showOutput) {
                     System.out.println("It is " + turn.getName() + "'s turn: ");
-                    int column = turn.doTurn();
-                    //Check if column to Drop is valid and drop chip depending on which players turn it is
-                    if (this.gameField.dropPossible(column)) {
-                        if(turn == player1) {
-                            this.gameField.dropChip(column, ChipState.RED);
-                            turn=player2;
-                            break;
-                        }
-                        if(turn == player2) {
-                            this.gameField.dropChip(column, ChipState.BLUE);
-                            turn=player1;
-                            break;
-                        }
+                }
+                int column;
+                if (turn instanceof HumanPlayer) {
+                    column = turn.doTurn();
+                } else {
+                    column = turn.doTurn(gameField);
+                }
+                //Check if column to Drop is valid and drop chip depending on which players turn it is
+                if (this.gameField.dropPossible(column)) {
+                    if (turn == player1) {
+                        this.gameField.dropChip(column, ChipState.RED);
+                        turn = player2;
+                        break;
                     }
-                    else {
+                    if (turn == player2) {
+                        this.gameField.dropChip(column, ChipState.BLUE);
+                        turn = player1;
+                        break;
+                    }
+                } else {
+                    if (showOutput) {
                         System.out.println("No more Chips can fit in this column please choose another column");
                     }
                 }
+            }
             //After every turn evaluate the Board State to check if a winner has been determined
 
             this.gameState = evaluateBoard();
         }
-        System.out.println("This is the final state of the board: 0");
-        this.gameField.printField();
-        if(this.gameState == GameState.PLAYER1WINNER) {
+        if (showOutput) {
+            System.out.println("This is the final state of the board: 0");
+            this.gameField.printField();
+        }
+        if (this.gameState == GameState.PLAYER1WINNER) {
             endGame(player1);
         }
-        if(this.gameState== GameState.PLAYER2WINNER) {
+        if (this.gameState == GameState.PLAYER2WINNER) {
             endGame(player2);
         }
-        if(this.gameState== GameState.REMIS) {
+        if (this.gameState == GameState.REMIS) {
             endGame(player2);
         }
 
@@ -75,17 +99,25 @@ public class Game {
     }
 
     public void endGame(Player winner) {
-        System.out.println("The game is finished. The Winner is: " + winner.getName());
+        if (showOutput) {
+            System.out.println("The game is finished. The Winner is: " + winner.getName());
+        }
     }
     public void endGame() {
-        System.out.println("The game is finished. No Winner could be determined");
+        if (showOutput) {
+            System.out.println("The game is finished. No Winner could be determined");
+
+        }
     }
 
     public GameState evaluateBoard() {
+
         if (EvaluationUtilities.checkForWinner(player1, gameField)) {
             return GameState.PLAYER1WINNER;
         } else if (EvaluationUtilities.checkForWinner(player2, gameField)) {
             return GameState.PLAYER2WINNER;
+        } else if (!gameField.anyMoreMovesPossible()) {
+            return GameState.REMIS;
         } else {
             return GameState.RUNNING;
         }
