@@ -1,11 +1,13 @@
 package me.cedric.game;
 
 import me.cedric.player.GreedyAI;
+import me.cedric.player.HumanPlayer;
 import me.cedric.player.Player;
-import me.cedric.player.RandomAI;
+
+import java.io.IOException;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
 /*
         Field sf = new Field(6,7);
         sf.printField();
@@ -22,9 +24,9 @@ public class Main {
 
  */
         //Player player1 = new HumanPlayer("Cedric", 'r', ChipState.RED);
-        Player player1 = new GreedyAI("Smartyboy", 'r', ChipState.RED);
+        Player player1 = new HumanPlayer("Ced", 'r', ChipState.RED);
 
-        Player player2 = new RandomAI("Randy Random", 'b', ChipState.BLUE);
+        Player player2 = new GreedyAI("Greedy Greeder", 'b', ChipState.BLUE);
         /*
         sf.dropChip(4,ChipState.RED);
         sf.dropChip(4,ChipState.RED);

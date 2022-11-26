@@ -5,6 +5,7 @@ import me.cedric.game.EvaluationUtilities;
 import me.cedric.game.Field;
 import me.cedric.game.GameState;
 
+import java.io.*;
 import java.util.Random;
 
 public class GreedyAI extends Player {
@@ -22,9 +23,11 @@ public class GreedyAI extends Player {
         return 0;
     }
 
-    public int doTurn(Field field, Player enemy) {
+    public int doTurn(Field field, Player enemy) throws IOException, ClassNotFoundException {
         for (int i : field.getValidLocations()) {
-            Field newField = field;
+            //deepcopy benötigt
+            Field newField = this.deepCopyField(field);
+
             newField.dropChip(i, this.getChipState());
             if (EvaluationUtilities.evaluateBoard(this, enemy, newField) == GameState.PLAYER1WINNER) {
                 return i;
@@ -40,6 +43,18 @@ public class GreedyAI extends Player {
             }
         }
         return 0;
+    }
+
+    private Field deepCopyField(Field field) throws IOException, ClassNotFoundException {
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        ObjectOutputStream oos = new ObjectOutputStream(bos);
+        oos.writeObject(field);
+        oos.flush();
+        oos.close();
+        bos.close();
+        byte[] byteData = bos.toByteArray();
+        ByteArrayInputStream bais = new ByteArrayInputStream(byteData);
+        return (Field) new ObjectInputStream(bais).readObject();
     }
 
 }

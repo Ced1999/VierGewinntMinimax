@@ -1,10 +1,11 @@
 package me.cedric.game;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Field {
+public class Field implements Serializable {
     private final char[][] field;
     private final int verticalSize;
     private final int horizontalSize;

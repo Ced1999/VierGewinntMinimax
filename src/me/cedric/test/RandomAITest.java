@@ -8,6 +8,8 @@ import me.cedric.player.Player;
 import me.cedric.player.RandomAI;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
+
 public class RandomAITest {
     Field sf;
     Player player1;
@@ -20,14 +22,14 @@ public class RandomAITest {
     }
 
     @Test
-    public void TestRandomGame() {
+    public void TestRandomGame() throws IOException, ClassNotFoundException {
         setUp();
         Game game = new Game(player1, player2, 6, 7, 0, true);
         game.startGame();
     }
 
     @Test
-    public void test1000Games() {
+    public void test1000Games() throws IOException, ClassNotFoundException {
         int winplayer1 = 0;
         int winplayer2 = 0;
         int remis = 0;
@@ -50,7 +52,7 @@ public class RandomAITest {
     }
 
     @Test
-    public void test10000Games() {
+    public void test10000Games() throws IOException, ClassNotFoundException {
         int winplayer1 = 0;
         int winplayer2 = 0;
         int remis = 0;
@@ -74,7 +76,7 @@ public class RandomAITest {
     }
 
     @Test
-    public void test100000Games() {
+    public void test100000Games() throws IOException, ClassNotFoundException {
         int winplayer1 = 0;
         int winplayer2 = 0;
         int remis = 0;
@@ -97,7 +99,7 @@ public class RandomAITest {
     }
 
     @Test
-    public void test1000000Games() {
+    public void test1000000Games() throws IOException, ClassNotFoundException {
         int winplayer1 = 0;
         int winplayer2 = 0;
         int remis = 0;
