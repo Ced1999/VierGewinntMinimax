@@ -1,11 +1,11 @@
 package me.cedric.game;
 
-import me.cedric.player.HumanPlayer;
 import me.cedric.player.Player;
+import me.cedric.player.RandomAI;
 
 public class Main {
     public static void main(String[] args) {
-
+/*
         Field sf = new Field(6,7);
         sf.printField();
         sf.setChip(5,4,ChipState.RED);
@@ -18,13 +18,19 @@ public class Main {
         sf.setChip(3,3,ChipState.BLUE);
 
         sf.printField();
-        Player player1 = new HumanPlayer("Cedric", 'r');
-        Player player2 = new HumanPlayer("Otto", 'b');
+
+ */
+        //Player player1 = new HumanPlayer("Cedric", 'r', ChipState.RED);
+        Player player1 = new RandomAI("Cassandra Classic", 'r', ChipState.RED);
+
+        Player player2 = new RandomAI("Randy Random", 'b', ChipState.BLUE);
+        /*
         sf.dropChip(4,ChipState.RED);
         sf.dropChip(4,ChipState.RED);
         sf.dropChip(4,ChipState.RED);
         sf.printField();
 
+         */
         Game game = new Game(player1, player2, 6, 7, 0, true);
         game.startGame();
 

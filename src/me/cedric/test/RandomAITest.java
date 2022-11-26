@@ -1,5 +1,6 @@
 package me.cedric.test;
 
+import me.cedric.game.ChipState;
 import me.cedric.game.Field;
 import me.cedric.game.Game;
 import me.cedric.game.GameState;
@@ -14,8 +15,8 @@ public class RandomAITest {
 
     void setUp() {
         sf = new Field(6, 7);
-        player1 = new RandomAI("AIGarret", 'r');
-        player2 = new RandomAI("AIMortimer", 'b');
+        player1 = new RandomAI("AIGarret", 'r', ChipState.RED);
+        player2 = new RandomAI("AIMortimer", 'b', ChipState.BLUE);
     }
 
     @Test

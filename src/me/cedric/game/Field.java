@@ -1,6 +1,8 @@
 package me.cedric.game;
 
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Field {
     private final char[][] field;
@@ -46,6 +48,25 @@ public class Field {
         }
     }
 
+    public void removeLastDropped(int column) {
+        for (int i = 0; i < this.getVerticalSize(); i++) {
+            if (this.getFieldPointState(i, column) != (ChipState.EMPTY)) {
+                this.setChip(i, column, ChipState.EMPTY);
+                return;
+            }
+        }
+    }
+
+    public Set<Integer> getValidLocations() {
+        Set<Integer> possible = new HashSet<Integer>();
+        for (int i = 0; i < this.getHorizontalSize(); i++) {
+            if (dropPossible(i)) {
+                possible.add(i);
+            }
+        }
+        return possible;
+    }
+
     public boolean anyMoreMovesPossible() {
         for (int i = 0; i < this.getHorizontalSize(); i++) {
             if (dropPossible(i)) {
@@ -81,6 +102,7 @@ public class Field {
         return field[x][y];
     }
 
+
     public void printField() {
         for (int i = 0; i < field[0].length; i++) {
             System.out.print("|_" + (i + 1) + "_");
@@ -103,7 +125,6 @@ public class Field {
             System.out.println();
         }
         System.out.println();
-
-
     }
+
 }

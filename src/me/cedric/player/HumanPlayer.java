@@ -1,13 +1,14 @@
 package me.cedric.player;
 
+import me.cedric.game.ChipState;
 import me.cedric.game.Field;
 
 import java.util.Scanner;
 
-public class HumanPlayer extends Player{
+public class HumanPlayer extends Player {
 
-    public HumanPlayer(String name,char token) {
-        super(name, token);
+    public HumanPlayer(String name, char token, ChipState chipState) {
+        super(name, token, chipState);
     }
 
     @Override

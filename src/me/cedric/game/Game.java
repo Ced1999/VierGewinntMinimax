@@ -13,8 +13,8 @@ public class Game {
     private final Field gameField;
     private GameState gameState;
     private Player turn;
-    private final int waitingTime;
-    private final boolean showOutput;
+    private final int waitingTime; //Time in ms to sleep between each Output (better visualization of bot games)
+    private final boolean showOutput; //Enable or Disable output (Mainly useful for performance of bot games)
 
     public Game(Player player1, Player player2, int height, int width, int waitingTime, boolean showOutput) {
         this.player1 = player1;
@@ -79,7 +79,7 @@ public class Game {
             }
             //After every turn evaluate the Board State to check if a winner has been determined
 
-            this.gameState = evaluateBoard();
+            this.gameState = EvaluationUtilities.evaluateBoard(player1, player2, gameField);
         }
         if (showOutput) {
             System.out.println("This is the final state of the board: 0");
@@ -110,18 +110,7 @@ public class Game {
         }
     }
 
-    public GameState evaluateBoard() {
 
-        if (EvaluationUtilities.checkForWinner(player1, gameField)) {
-            return GameState.PLAYER1WINNER;
-        } else if (EvaluationUtilities.checkForWinner(player2, gameField)) {
-            return GameState.PLAYER2WINNER;
-        } else if (!gameField.anyMoreMovesPossible()) {
-            return GameState.REMIS;
-        } else {
-            return GameState.RUNNING;
-        }
-    }
 
     public Player getPlayer1() {
         return player1;

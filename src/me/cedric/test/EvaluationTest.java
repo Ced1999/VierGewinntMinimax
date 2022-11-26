@@ -17,9 +17,9 @@ public class EvaluationTest {
     Player player2;
 
     void setUp() {
-        sf = new Field(6,7);
-        player1 = new HumanPlayer("Cedric", 'r');
-        player2 = new HumanPlayer("Otto", 'b');
+        sf = new Field(6, 7);
+        player1 = new HumanPlayer("Cedric", 'r', ChipState.RED);
+        player2 = new HumanPlayer("Otto", 'b', ChipState.BLUE);
     }
     @Test
     void diagonalTest() {

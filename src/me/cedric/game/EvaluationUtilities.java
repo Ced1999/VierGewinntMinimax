@@ -32,17 +32,23 @@ public class EvaluationUtilities {
     }
 
     public static boolean checkDiagonals(Player player, Field gameField) {
-        // ascendingDiagonalCheck 
+        // Check for ascending Diagonals
         for (int column = 3; column < gameField.getHorizontalSize(); column++) {
             for (int row = 0; row < gameField.getVerticalSize() - 3; row++) {
-                if (gameField.getFieldPoint(row, column) == player.getToken() && gameField.getFieldPoint(row + 1, column - 1) == player.getToken() && gameField.getFieldPoint(row + 2, column - 2) == player.getToken() && gameField.getFieldPoint(row + 3, column - 3) == player.getToken())
+                if (gameField.getFieldPoint(row, column) == player.getToken() &&
+                        gameField.getFieldPoint(row + 1, column - 1) == player.getToken() &&
+                        gameField.getFieldPoint(row + 2, column - 2) == player.getToken() &&
+                        gameField.getFieldPoint(row + 3, column - 3) == player.getToken())
                     return true;
             }
         }
-        // descendingDiagonalCheck
+        // Check for descending diagonals
         for (int column = 3; column < gameField.getHorizontalSize(); column++) {
             for (int row = 3; row < gameField.getVerticalSize(); row++) {
-                if (gameField.getFieldPoint(row, column) == player.getToken() && gameField.getFieldPoint(row - 1, column - 1) == player.getToken() && gameField.getFieldPoint(row - 2, column - 2) == player.getToken() && gameField.getFieldPoint(row - 3, column - 3) == player.getToken())
+                if (gameField.getFieldPoint(row, column) == player.getToken() &&
+                        gameField.getFieldPoint(row - 1, column - 1) == player.getToken() &&
+                        gameField.getFieldPoint(row - 2, column - 2) == player.getToken() &&
+                        gameField.getFieldPoint(row - 3, column - 3) == player.getToken())
                     return true;
             }
         }
@@ -51,6 +57,19 @@ public class EvaluationUtilities {
 
     public static boolean checkForWinner(Player player, Field gameField) {
         return checkHorizontal(player, gameField) || checkVertical(player, gameField) || checkDiagonals(player, gameField);
+    }
+
+    public static GameState evaluateBoard(Player player1, Player player2, Field gameField) {
+
+        if (EvaluationUtilities.checkForWinner(player1, gameField)) {
+            return GameState.PLAYER1WINNER;
+        } else if (EvaluationUtilities.checkForWinner(player2, gameField)) {
+            return GameState.PLAYER2WINNER;
+        } else if (!gameField.anyMoreMovesPossible()) {
+            return GameState.REMIS;
+        } else {
+            return GameState.RUNNING;
+        }
     }
 
 
