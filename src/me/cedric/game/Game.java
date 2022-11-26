@@ -1,7 +1,9 @@
 package me.cedric.game;
 
+import me.cedric.player.GreedyAI;
 import me.cedric.player.HumanPlayer;
 import me.cedric.player.Player;
+import me.cedric.player.RandomAI;
 
 import java.util.Random;
 
@@ -53,11 +55,18 @@ public class Game {
                 if (showOutput) {
                     System.out.println("It is " + turn.getName() + "'s turn: ");
                 }
-                int column;
+                int column = 0;
                 if (turn instanceof HumanPlayer) {
                     column = turn.doTurn();
-                } else {
+                } else if (turn instanceof RandomAI) {
                     column = turn.doTurn(gameField);
+                } else if (turn instanceof GreedyAI) {
+                    if (turn == player1) {
+                        column = turn.doTurn(gameField, player2);
+                    } else {
+                        column = turn.doTurn(gameField, player1);
+
+                    }
                 }
                 //Check if column to Drop is valid and drop chip depending on which players turn it is
                 if (this.gameField.dropPossible(column)) {

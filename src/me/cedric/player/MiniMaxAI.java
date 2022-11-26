@@ -23,6 +23,11 @@ public class MiniMaxAI extends Player {
         return 0;
     }
 
+    @Override
+    public int doTurn(Field field, Player enemy) {
+        return 0;
+    }
+
     /*
        private int miniMax(Field field, Player player, int depth) {
            Set<Integer> validLocations = field.getValidLocations();

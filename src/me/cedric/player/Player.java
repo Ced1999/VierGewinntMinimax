@@ -17,6 +17,8 @@ public abstract class Player {
 
     public abstract int doTurn(Field field);
 
+    public abstract int doTurn(Field field, Player enemy);
+
 
     public Player(String name, char token, ChipState chipState) {
         this.name = name;

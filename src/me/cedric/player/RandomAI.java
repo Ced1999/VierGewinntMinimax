@@ -28,4 +28,9 @@ public class RandomAI extends Player {
             }
         }
     }
+
+    @Override
+    public int doTurn(Field field, Player enemy) {
+        return 0;
+    }
 }

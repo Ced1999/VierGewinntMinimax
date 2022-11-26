@@ -23,4 +23,9 @@ public class HumanPlayer extends Player {
     public int doTurn(Field field) {
         return 0;
     }
+
+    @Override
+    public int doTurn(Field field, Player enemy) {
+        return 0;
+    }
 }

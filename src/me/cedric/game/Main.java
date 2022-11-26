@@ -1,5 +1,6 @@
 package me.cedric.game;
 
+import me.cedric.player.GreedyAI;
 import me.cedric.player.Player;
 import me.cedric.player.RandomAI;
 
@@ -21,7 +22,7 @@ public class Main {
 
  */
         //Player player1 = new HumanPlayer("Cedric", 'r', ChipState.RED);
-        Player player1 = new RandomAI("Cassandra Classic", 'r', ChipState.RED);
+        Player player1 = new GreedyAI("Smartyboy", 'r', ChipState.RED);
 
         Player player2 = new RandomAI("Randy Random", 'b', ChipState.BLUE);
         /*
