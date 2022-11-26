@@ -25,24 +25,30 @@ public class GreedyAI extends Player {
 
     public int doTurn(Field field, Player enemy) throws IOException, ClassNotFoundException {
         for (int i : field.getValidLocations()) {
-            //deepcopy benötigt
             Field newField = this.deepCopyField(field);
-
+            //Simulate Dropping of Friendly
             newField.dropChip(i, this.getChipState());
             if (EvaluationUtilities.evaluateBoard(this, enemy, newField) == GameState.PLAYER1WINNER) {
                 return i;
-            } else {
-                Random random = new Random();
-                while (true) {
-                    //generate random number for next turn and check if the turn is possible
-                    int column = random.nextInt(7);
-                    if (field.dropPossible(column)) {
-                        return column;
-                    }
-                }
+            }
+            newField.removeLastDropped(i);
+            newField.dropChip(i, enemy.getChipState());
+            if (EvaluationUtilities.evaluateBoard(this, enemy, newField) == GameState.PLAYER2WINNER) {
+                return i;
+            }
+            newField.removeLastDropped(i);
+            newField.dropChip(i, this.getChipState());
+
+
+        }
+        Random random = new Random();
+        while (true) {
+            //generate random number for next turn and check if the turn is possible
+            int column = random.nextInt(7);
+            if (field.dropPossible(column)) {
+                return column;
             }
         }
-        return 0;
     }
 
     private Field deepCopyField(Field field) throws IOException, ClassNotFoundException {

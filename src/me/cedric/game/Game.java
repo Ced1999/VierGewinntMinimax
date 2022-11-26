@@ -19,7 +19,10 @@ public class Game {
     private final int waitingTime; //Time in ms to sleep between each Output (better visualization of bot games)
     private final boolean showOutput; //Enable or Disable output (Mainly useful for performance of bot games)
 
+    private int turncount;
+
     public Game(Player player1, Player player2, int height, int width, int waitingTime, boolean showOutput) {
+        turncount = 1;
         this.player1 = player1;
         this.player2 = player2;
         this.waitingTime = waitingTime;
@@ -54,7 +57,7 @@ public class Game {
                     Thread.currentThread().interrupt();
                 }
                 if (showOutput) {
-                    System.out.println("It is " + turn.getName() + "'s turn: ");
+                    System.out.println("It is " + turn.getName() + "'s turn: " + "Turn Number: " + this.turncount);
                 }
                 int column = 0;
                 if (turn instanceof HumanPlayer) {
@@ -73,11 +76,13 @@ public class Game {
                     if (turn == player1) {
                         this.gameField.dropChip(column, ChipState.RED);
                         turn = player2;
+                        this.turncount++;
                         break;
                     }
                     if (turn == player2) {
                         this.gameField.dropChip(column, ChipState.BLUE);
                         turn = player1;
+                        this.turncount++;
                         break;
                     }
                 } else {
