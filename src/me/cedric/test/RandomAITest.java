@@ -8,8 +8,6 @@ import me.cedric.player.Player;
 import me.cedric.player.RandomAI;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-
 public class RandomAITest {
     Field sf;
     Player player1;
@@ -22,14 +20,14 @@ public class RandomAITest {
     }
 
     @Test
-    public void TestRandomGame() throws IOException, ClassNotFoundException {
+    public void TestRandomGame() {
         setUp();
         Game game = new Game(player1, player2, 6, 7, 0, true);
         game.startGame();
     }
 
     @Test
-    public void test1000Games() throws IOException, ClassNotFoundException {
+    public void test1000Games() {
         int winplayer1 = 0;
         int winplayer2 = 0;
         int remis = 0;
@@ -47,12 +45,12 @@ public class RandomAITest {
 
         }
         System.out.println("Player1Wins: " + winplayer1 + " " + ((winplayer1 * 100 / (double) (winplayer1 + winplayer2 + remis)) + "%"));
-        System.out.println("Player2Wins: " + winplayer1 + " " + ((winplayer2 * 100 / (double) (winplayer1 + winplayer2 + remis)) + "%"));
+        System.out.println("Player2Wins: " + winplayer2 + " " + ((winplayer2 * 100 / (double) (winplayer1 + winplayer2 + remis)) + "%"));
         System.out.println("Remis: " + remis + " " + ((remis * 100 / (double) (winplayer1 + winplayer2 + remis)) + "%"));
     }
 
     @Test
-    public void test10000Games() throws IOException, ClassNotFoundException {
+    public void test10000Games() {
         int winplayer1 = 0;
         int winplayer2 = 0;
         int remis = 0;
@@ -71,12 +69,12 @@ public class RandomAITest {
 
         }
         System.out.println("Player1Wins: " + winplayer1 + " " + ((winplayer1 * 100 / (double) (winplayer1 + winplayer2 + remis)) + "%"));
-        System.out.println("Player2Wins: " + winplayer1 + " " + ((winplayer2 * 100 / (double) (winplayer1 + winplayer2 + remis)) + "%"));
+        System.out.println("Player2Wins: " + winplayer2 + " " + ((winplayer2 * 100 / (double) (winplayer1 + winplayer2 + remis)) + "%"));
         System.out.println("Remis: " + remis + " " + ((remis * 100 / (double) (winplayer1 + winplayer2 + remis)) + "%"));
     }
 
     @Test
-    public void test100000Games() throws IOException, ClassNotFoundException {
+    public void test100000Games() {
         int winplayer1 = 0;
         int winplayer2 = 0;
         int remis = 0;
@@ -94,12 +92,12 @@ public class RandomAITest {
 
         }
         System.out.println("Player1Wins: " + winplayer1 + " " + ((winplayer1 * 100 / (double) (winplayer1 + winplayer2 + remis)) + "%"));
-        System.out.println("Player2Wins: " + winplayer1 + " " + ((winplayer2 * 100 / (double) (winplayer1 + winplayer2 + remis)) + "%"));
+        System.out.println("Player2Wins: " + winplayer2 + " " + ((winplayer2 * 100 / (double) (winplayer1 + winplayer2 + remis)) + "%"));
         System.out.println("Remis: " + remis + " " + ((remis * 100 / (double) (winplayer1 + winplayer2 + remis)) + "%"));
     }
 
     @Test
-    public void test1000000Games() throws IOException, ClassNotFoundException {
+    public void test1000000Games() {
         int winplayer1 = 0;
         int winplayer2 = 0;
         int remis = 0;
@@ -117,7 +115,7 @@ public class RandomAITest {
 
         }
         System.out.println("Player1Wins: " + winplayer1 + " " + ((winplayer1 * 100 / (double) (winplayer1 + winplayer2 + remis)) + "%"));
-        System.out.println("Player2Wins: " + winplayer1 + " " + ((winplayer2 * 100 / (double) (winplayer1 + winplayer2 + remis)) + "%"));
+        System.out.println("Player2Wins: " + winplayer2 + " " + ((winplayer2 * 100 / (double) (winplayer1 + winplayer2 + remis)) + "%"));
         System.out.println("Remis: " + remis + " " + ((remis * 100 / (double) (winplayer1 + winplayer2 + remis)) + "%"));
     }
 }

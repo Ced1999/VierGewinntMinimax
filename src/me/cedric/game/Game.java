@@ -5,7 +5,6 @@ import me.cedric.player.HumanPlayer;
 import me.cedric.player.Player;
 import me.cedric.player.RandomAI;
 
-import java.io.IOException;
 import java.util.Random;
 
 import static java.lang.Thread.sleep;
@@ -38,12 +37,12 @@ public class Game {
         this.gameState = GameState.PREPARATION;
     }
 
-    public void startGame() throws IOException, ClassNotFoundException {
+    public void startGame() {
         this.gameState = GameState.RUNNING;
         gameLogic();
     }
 
-    public void gameLogic() throws IOException, ClassNotFoundException {
+    public void gameLogic() {
         while (this.gameState == GameState.RUNNING) {
             if (showOutput) {
                 System.out.println("This is the current field:");

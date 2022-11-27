@@ -22,7 +22,7 @@ public class RandomAI extends Player {
         Random random = new Random();
         while (true) {
             //generate random number for next turn and check if the turn is possible
-            int column = random.nextInt(7);
+            int column = random.nextInt(field.getHorizontalSize());
             if (field.dropPossible(column)) {
                 return column;
             }
