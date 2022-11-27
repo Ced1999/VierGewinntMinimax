@@ -1,9 +1,6 @@
 package me.cedric.game;
 
-import me.cedric.player.GreedyAI;
-import me.cedric.player.HumanPlayer;
-import me.cedric.player.Player;
-import me.cedric.player.RandomAI;
+import me.cedric.player.*;
 
 import java.util.Random;
 
@@ -69,6 +66,13 @@ public class Game {
                     } else {
                         column = turn.doTurn(gameField, player1);
                     }
+                } else if(turn instanceof MiniMaxAI) {
+                    if(turn == player1) {
+                        column = turn.doTurn(gameField,player2);
+                    } else if( turn == player2) {
+                        column = turn.doTurn(gameField,player1);
+                    }
+
                 }
                 //Check if column to Drop is valid and drop chip depending on which players turn it is
                 if (this.gameField.dropPossible(column)) {

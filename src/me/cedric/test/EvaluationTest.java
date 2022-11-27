@@ -82,9 +82,21 @@ public class EvaluationTest {
             }
         }
         sf.printField();
-        assertFalse(sf.anyMoreMovesPossible());
+        assertFalse(sf.anyMoreMovesPossible(),"There are Still Moves Possible Error");
         sf.setChip(sf.getVerticalSize() - 1, sf.getHorizontalSize() - 1, ChipState.EMPTY);
         sf.printField();
-        assertTrue(sf.anyMoreMovesPossible());
+        assertTrue(sf.anyMoreMovesPossible(), "No moves Possible Error");
     }
+    @Test
+    void possibleMovesTest() {
+        setUp();
+        sf.dropChip(0,ChipState.RED);
+        sf.dropChip(0,ChipState.BLUE);
+        sf.dropChip(0,ChipState.RED);
+        sf.dropChip(0,ChipState.BLUE);
+        sf.dropChip(0,ChipState.RED);
+        sf.printField();
+        System.out.println(sf.getValidLocations());
+    }
+
 }

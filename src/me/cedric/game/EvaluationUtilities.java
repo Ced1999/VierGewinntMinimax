@@ -54,6 +54,9 @@ public class EvaluationUtilities {
         }
         return false;
     }
+    public static boolean isTwoRow(Player player, Field gameField) {
+        return false;
+    }
 
     public static boolean checkForWinner(Player player, Field gameField) {
         return checkHorizontal(player, gameField) || checkVertical(player, gameField) || checkDiagonals(player, gameField);

@@ -1,9 +1,9 @@
 package me.cedric.game;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 public class Field implements Serializable {
     private final char[][] field;
@@ -58,8 +58,8 @@ public class Field implements Serializable {
         }
     }
 
-    public Set<Integer> getValidLocations() {
-        Set<Integer> possible = new HashSet<Integer>();
+    public List<Integer> getValidLocations() {
+        List<Integer> possible = new ArrayList<Integer>();
         for (int i = 0; i < this.getHorizontalSize(); i++) {
             if (dropPossible(i)) {
                 possible.add(i);
@@ -127,5 +127,6 @@ public class Field implements Serializable {
         }
         System.out.println();
     }
+
 
 }
