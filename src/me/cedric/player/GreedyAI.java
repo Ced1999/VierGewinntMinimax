@@ -5,10 +5,7 @@ import me.cedric.game.EvaluationUtilities;
 import me.cedric.game.Field;
 import me.cedric.game.GameState;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.util.Random;
 
 public class GreedyAI extends Player {
@@ -26,7 +23,7 @@ public class GreedyAI extends Player {
         return 0;
     }
 
-    public int doTurn(Field field, Player enemy) {
+    public int doTurn(Field field, Player enemy) throws IOException, ClassNotFoundException {
         for (int i : field.getValidLocations()) {
             Field newField = this.deepCopyField(field);
             //Simulate Dropping of Friendly
@@ -47,26 +44,23 @@ public class GreedyAI extends Player {
         Random random = new Random();
         while (true) {
             //generate random number for next turn and check if the turn is possible
-            int column = random.nextInt(field.getHorizontalSize());
+            int column = random.nextInt(7);
             if (field.dropPossible(column)) {
                 return column;
             }
         }
     }
 
-    private Field deepCopyField(Field field) {
-        try {
-            ByteArrayOutputStream bos = new ByteArrayOutputStream();
-            ObjectOutputStream oos = new ObjectOutputStream(bos);
-            oos.writeObject(field);
-            oos.flush();
-            oos.close();
-            bos.close();
-            byte[] byteData = bos.toByteArray();
-            ByteArrayInputStream bais = new ByteArrayInputStream(byteData);
-            return (Field) new ObjectInputStream(bais).readObject();
-        } catch (Exception exception) {
-            return field;
-        }
+    private Field deepCopyField(Field field) throws IOException, ClassNotFoundException {
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        ObjectOutputStream oos = new ObjectOutputStream(bos);
+        oos.writeObject(field);
+        oos.flush();
+        oos.close();
+        bos.close();
+        byte[] byteData = bos.toByteArray();
+        ByteArrayInputStream bais = new ByteArrayInputStream(byteData);
+        return (Field) new ObjectInputStream(bais).readObject();
     }
+
 }

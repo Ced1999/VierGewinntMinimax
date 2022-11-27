@@ -106,7 +106,7 @@ public class Field implements Serializable {
 
     public void printField() {
         for (int i = 0; i < field[0].length; i++) {
-            System.out.print("|_" + (i) + "_");
+            System.out.print("|_" + (i + 1) + "_");
         }
         System.out.print("|");
         System.out.println();

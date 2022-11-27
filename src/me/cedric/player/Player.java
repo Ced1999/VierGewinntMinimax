@@ -3,6 +3,8 @@ package me.cedric.player;
 import me.cedric.game.ChipState;
 import me.cedric.game.Field;
 
+import java.io.IOException;
+
 public abstract class Player {
     private final String name;
     private final char token;
@@ -17,7 +19,7 @@ public abstract class Player {
 
     public abstract int doTurn(Field field);
 
-    public abstract int doTurn(Field field, Player enemy);
+    public abstract int doTurn(Field field, Player enemy) throws IOException, ClassNotFoundException;
 
 
     public Player(String name, char token, ChipState chipState) {
